@@ -2,7 +2,7 @@
 
 namespace Tests;
 
-use SWeb3\Utils;
+use iAmirNet\SWeb3\Utils;
 
 class TestCase extends  \PHPUnit\Framework\TestCase
 {

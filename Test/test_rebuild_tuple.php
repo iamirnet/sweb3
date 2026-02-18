@@ -1,6 +1,6 @@
 <?php
 
-namespace SWeb3;
+namespace iAmirNet\SWeb3;
 use \stdClass;
 
 include_once("../vendor/autoload.php");
@@ -21,7 +21,7 @@ if ($limit === $t->getABIInputsCount()) {
 }
 if ($limit === false) {
 	$t->runTest();
-	
+
 	echo "<div style='background: #116611'>&nbsp;</div>";
 	for ($i = 1; $i <= $t->getABIInputsCount(); $i++)
 		$t->runTest($i);

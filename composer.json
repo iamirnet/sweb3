@@ -1,5 +1,5 @@
 {
-    "name": "sleepfinance/simple-web3-php",
+    "name": "iamirnet/sweb",
     "description": "Web3 library in PHP",
     "keywords": [
         "ethereum",
@@ -20,6 +20,12 @@
             "name": "drlecks",
             "email": "contacte@powdercode.com",
             "homepage": "https://github.com/drlecks/Simple-Web3-Php"
+        },
+        {
+            "name" : "iamirnet",
+            "email" : "me@iamir.net",
+            "homepage": "https://iamir.net",
+            "role": "Developer"
         }
     ],
     "require": {

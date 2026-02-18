@@ -1,23 +1,23 @@
 <?php
 /**
  * This file is part of simple-web3-php package.
- * 
- * (c) Alex Cabrera  
- * 
+ *
+ * (c) Alex Cabrera
+ *
  * @author Alex Cabrera
- * @license MIT 
+ * @license MIT
  */
 
-namespace SWeb3;
+namespace iAmirNet\SWeb3;
 
 ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
 
 include_once("../vendor/autoload.php");
 include_once("example.config.php");
-  
-use SWeb3\SWeb3; 
-use SWeb3\SWeb3_Contract;
+
+use iAmirNet\SWeb3\SWeb3;
+use iAmirNet\SWeb3\Contract;
 use phpseclib\Math\BigInteger as BigNumber;
 
 
@@ -36,51 +36,51 @@ $extra_curl_params = [];
 $sweb3 = new SWeb3(ETHEREUM_NET_ENDPOINT, $extra_curl_params);
 //send chain id, important for transaction signing 0x1 = main net, 0x3 ropsten... full list = https://chainlist.org/
 $sweb3->chainId = '0x3';//ropsten
-$sweb3->setPersonalData(SWP_ADDRESS, SWP_PRIVATE_KEY); 
+$sweb3->setPersonalData(SWP_ADDRESS, SWP_PRIVATE_KEY);
 
 //enable batching
 $sweb3->batch(true);
 
-//we need the nonce for signing the send eth transaction 
-$sweb3->call('eth_gasPrice');   
-$sweb3->call('eth_getTransactionCount', [$sweb3->personal->address], 'pending');   
+//we need the nonce for signing the send eth transaction
+$sweb3->call('eth_gasPrice');
+$sweb3->call('eth_getTransactionCount', [$sweb3->personal->address], 'pending');
 $res = $sweb3->executeBatch();
 
 PrintCallResult('Gas price & nonce:', $res);
 
-$gasPrice = $sweb3->utils->hexToBn($res[0]->result);  
-$nonce = $sweb3->utils->hexToBn($res[1]->result); 
+$gasPrice = $sweb3->utils->hexToBn($res[0]->result);
+$nonce = $sweb3->utils->hexToBn($res[1]->result);
 
 
 //CALL
 
-//general ethereum block information 
-$sweb3->call('eth_blockNumber', []); 
- 
-//contract: initialize contract from address and ABI string
-$contract = new SWeb3_contract($sweb3, SWP_Contract_Address, SWP_Contract_ABI);
-   
-//contract: direct public variable
-$contract->call('autoinc_tuple_a');  
+//general ethereum block information
+$sweb3->call('eth_blockNumber', []);
 
-//contract: input string[][] returns tuple[][] 
+//contract: initialize contract from address and ABI string
+$contract = new Contract($sweb3, SWP_Contract_Address, SWP_Contract_ABI);
+
+//contract: direct public variable
+$contract->call('autoinc_tuple_a');
+
+//contract: input string[][] returns tuple[][]
 $contract->call('Mirror_StringArray', [['text1', 'text22'], ['text333', 'text4444'], ['text55555', 'text666666']]);
 
 
-//SEND  
+//SEND
 //send 0.001 eth
-$sendParams = [ 
+$sendParams = [
     'from' => $sweb3->personal->address,
-    'to' => '0x3Fc47d792BD1B0f423B0e850F4E2AD172d408447', 
+    'to' => '0x3Fc47d792BD1B0f423B0e850F4E2AD172d408447',
     'gasPrice' => $gasPrice,
     'gasLimit' => 21000, //good estimation for eth transaction only
     'nonce' => $nonce,
     'value' => $sweb3->utils->toWei('0.001', 'ether')
-];   
-//$sweb3->send($sendParams); 
+];
+//$sweb3->send($sendParams);
 
 
-//EXECUTE 
+//EXECUTE
 
 //execute all batched calls
 $res = $sweb3->executeBatch();
@@ -95,16 +95,16 @@ exit(0);
 
 
 
-    
- 
- 
+
+
+
 function PrintCallResult($callName, $result)
 {
     echo "<br/> Call -> <b>". $callName . "</b><br/>";
 
     if(is_array($result))
     {
-        foreach($result as $key => $part) 
+        foreach($result as $key => $part)
 		{
 			echo "Part [" . $key . "]-> ". PrintObject($part) . "<br/>";
 		}
@@ -112,20 +112,20 @@ function PrintCallResult($callName, $result)
     else {
         echo "Result -> ". PrintObject($result) . "<br/>";
     }
-    
+
 }
 
 
 
 function PrintObject($x, $tabs = 0)
-{ 
+{
 	if ($x instanceof BigNumber)
 	{
 		return $x;
 	}
-	
+
 	if (is_object($x)) {
-		$x = (array)($x); 
+		$x = (array)($x);
 	}
 
 	if (is_array($x))
@@ -140,8 +140,8 @@ function PrintObject($x, $tabs = 0)
 			$text .= '<br>' . str_pad("", $tabs * 24, "&nbsp;") . $key . " : " . PrintObject($value, $tabs + 1);
 		}
 
-		return $text . '<br>' . str_pad("", ($tabs - 1) * 24, "&nbsp;") . "]"; 
+		return $text . '<br>' . str_pad("", ($tabs - 1) * 24, "&nbsp;") . "]";
 	}
-	 
+
 	return $x . '';
 }

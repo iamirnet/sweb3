@@ -1,9 +1,9 @@
-# simple-web3-php
+# SWeb3
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/drlecks/simple-web3-php.svg?style=flat-square)](https://packagist.org/packages/drlecks/simple-web3-php)
-[![Join the chat at https://gitter.im/drlecks/Simple-Web3-Php](https://img.shields.io/badge/gitter-join%20chat-brightgreen.svg)](https://gitter.im/Simple-Web3-Php/community)
-[![Licensed under the MIT License](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/drlecks/Simple-Web3-Php/blob/master/LICENSE)
-
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/iamirnet/sweb3.svg?style=flat-square)](https://packagist.org/packages/iamirnet/sweb3)
+[![Licensed under the MIT License](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/iamirnet/sweb3/blob/master/LICENSE)
+[![GitHub last commit](https://img.shields.io/github/last-commit/iamirnet/sweb3.svg?style=flat-square)](#)
+[![Packagist Downloads](https://img.shields.io/packagist/dt/iamirnet/sweb3.svg?style=flat-square)](https://packagist.org/packages/iamirnet/sweb3)
 
 A php interface for interacting with the Ethereum blockchain and ecosystem.
 
@@ -29,33 +29,56 @@ A php interface for interacting with the Ethereum blockchain and ecosystem.
 
 ### Latest stable release
 ```
-composer require drlecks/simple-web3-php "^0.10.0"
+composer require iamirnet/sweb3 "^0.1.0"
 ```
 
 Or you can add this line in composer.json
 
 ```
-"drlecks/simple-web3-php": "^0.10.0"
+"iamirnet/sweb3": "^0.1.0"
 ```
 
 
 ### Development (main branch)
 ```
-composer require drlecks/simple-web3-php dev-master
+composer require iamirnet/sweb3 dev-master
 ```
 
 Or you can add this line in composer.json
 
 ```
-"drlecks/simple-web3-php": "dev-master"
+"iamirnet/sweb3": "dev-master"
+```
+<details>
+ <summary>Click for help with installation</summary>
+
+## Install Composer
+If the above step didn't work, install composer and try again.
+#### Debian / Ubuntu
+```
+sudo apt-get install curl php-curl
+curl -s http://getcomposer.org/installer | php
+php composer.phar install
+```
+Composer not found? Use this command instead:
+```
+php composer.phar require "iamirnet/sweb3"
 ```
 
+#### Installing on Windows
+Download and install composer:
+1. https://getcomposer.org/download/
+2. Create a folder on your drive like C:\iAmirNet\Security
+3. Run command prompt and type `cd C:\iAmirNet\SWeb3`
+4. ```composer require iamirnet/sweb3```
+5. Once complete copy the vendor folder into your project.
+</details>
 
 # Usage
 
 ### New instance
 ```php
-use SWeb3\SWeb3;
+use iAmirNet\SWeb3\SWeb3;
 //initialize SWeb3 main object
 $sweb3 = new SWeb3('http://ethereum.node.provider:optional.node.port');
 
@@ -71,7 +94,7 @@ $sweb3->setPersonalData($from_address, $from_address_private_key);
 
 Hex to Big Number: 
 ```php 
-use SWeb3\Utils;
+use iAmirNet\SWeb3\Utils;
  
 $res = $sweb3->call('eth_blockNumber', []);
 $bigNum = Utils::hexToBn($res->result);
@@ -152,8 +175,8 @@ $sweb3->batch(false);
 
 ### Account
 ```php 
-use SWeb3\Accounts; 
-use SWeb3\Account;
+use iAmirNet\SWeb3\Accounts; 
+use iAmirNet\SWeb3\Account;
 
 //create new account privateKey/address (returns Account)
 $account = Accounts::create();
@@ -170,9 +193,9 @@ $res = $account2->sign('Some data');
 ### Contract interaction
 
 ```php
-use SWeb3\SWeb3_Contract;
+use iAmirNet\SWeb3\Contract;
 
-$contract = new SWeb3_contract($sweb3, '0x2222222222222222222222222222222222222222', '[ABI...]'); //'0x2222...' is contract address
+$contract = new Contract($sweb3, '0x2222222222222222222222222222222222222222', '[ABI...]'); //'0x2222...' is contract address
   
 // call contract function
 $res = $contract->call('autoinc_tuple_a');
@@ -194,10 +217,10 @@ $res = $contract->getLogs();
 ### Contract creation (deployment)
 
 ```php
-use SWeb3\SWeb3_Contract;
+use iAmirNet\SWeb3\Contract;
  
 $creation_abi = '[abi...]';
-$contract = new SWeb3_contract($sweb3, '', $creation_abi);
+$contract = new Contract($sweb3, '', $creation_abi);
 
 //set contract bytecode data
 $contract_bytecode = '123456789....';
@@ -212,11 +235,11 @@ $result = $contract->deployContract( [123123],  $extra_params);
 ### Usual required includes
 
 ```php 
-use SWeb3\SWeb3;                            //always needed, to create the Web3 object
-use SWeb3\Utils;                            //sweb3 helper classes (for example, hex conversion operations)
-use SWeb3\SWeb3_Contract;                   //contract creation and interaction
-use SWeb3\Accounts;                   		//account creation
-use SWeb3\Account;                   		//single account management (signing)
+use iAmirNet\SWeb3\SWeb3;                            //always needed, to create the Web3 object
+use iAmirNet\SWeb3\Utils;                            //sweb3 helper classes (for example, hex conversion operations)
+use iAmirNet\SWeb3\Contract;                   //contract creation and interaction
+use iAmirNet\SWeb3\Accounts;                   		//account creation
+use iAmirNet\SWeb3\Account;                   		//single account management (signing)
 use phpseclib\Math\BigInteger as BigNumber; //BigInt handling
 use stdClass;                               //for object interaction 
 ```
@@ -299,8 +322,8 @@ Don't base your code structure on this example. This example does not represent 
 MIT
  
 
-# DONATIONS (ETH)
+# DONATIONS (TRX Or USDT)
  
 ``` 
-0x4a890A7AFB7B1a4d49550FA81D5cdca09DC8606b
+TUE8GiY4vmz831N65McwzZVbA9XEDaLinn 😘❤
 ```
