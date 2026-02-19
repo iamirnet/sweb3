@@ -1,17 +1,17 @@
 <?php
 
-namespace Tests;
+namespace iAmirNet\Tests;
 
 use iAmirNet\SWeb3\ABI;
-use Tests\Fixtures\AddressFixture;
-use Tests\Fixtures\ArrayFixture;
-use Tests\TestCase;
-use Tests\Fixtures\BoolFixture;
+use iAmirNet\Tests\Fixtures\AddressFixture;
+use iAmirNet\Tests\Fixtures\ArrayFixture;
+use iAmirNet\Tests\TestCase;
+use iAmirNet\Tests\Fixtures\BoolFixture;
 use PHPUnit\Framework\Attributes\DataProviderExternal;
-use Tests\Fixtures\BytesFixture;
-use Tests\Fixtures\NumberFixture;
-use Tests\Fixtures\StringFixture;
-use Tests\Fixtures\TupleFixture;
+use iAmirNet\Tests\Fixtures\BytesFixture;
+use iAmirNet\Tests\Fixtures\NumberFixture;
+use iAmirNet\Tests\Fixtures\StringFixture;
+use iAmirNet\Tests\Fixtures\TupleFixture;
 
 /**
  * @coversDefaultClass \SleepFinance\Encoder

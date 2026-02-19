@@ -1,9 +1,9 @@
 <?php
 
-namespace Tests\Fixtures;
+namespace iAmirNet\Tests\Fixtures;
 
 use phpseclib\Math\BigInteger;
-use Tests\TestCase;
+use iAmirNet\Tests\TestCase;
 
 class NumberFixture extends TestCase
 {

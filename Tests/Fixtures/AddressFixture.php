@@ -1,8 +1,8 @@
 <?php
 
-namespace Tests\Fixtures;
+namespace iAmirNet\Tests\Fixtures;
 
-use Tests\TestCase;
+use iAmirNet\Tests\TestCase;
 
 class AddressFixture extends TestCase
 {

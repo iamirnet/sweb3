@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests;
+namespace iAmirNet\Tests;
 
 use iAmirNet\SWeb3\Utils;
 
