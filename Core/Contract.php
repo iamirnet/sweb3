@@ -51,7 +51,8 @@ class Contract
             $extraParams['to'] = $this->address;
         $extraParams['data'] = $this->encode($function_name, $callData);
         $result = $this->sweb3->call('eth_call', [$extraParams], $blockNumber);
-        return isset($result->result) ? $this->decode($function_name, $result->result) : $result;
+        $result = isset($result->result) ? $this->decode($function_name, $result->result) : $result;
+        return isset($result->result) ? $result->result : $result;
     }
 
     public function send(string $function_name, $sendData, $extraParams = null)
@@ -65,7 +66,8 @@ class Contract
         if (empty($extraParams['gasLimit']) && empty($extraParams['gas']))
             $extraParams['gasLimit'] = $this->estimateGas($extraParams);
         $result = $this->sweb3->send($extraParams);
-        return isset($result->result) ? $this->decode($function_name, $result->result) : $result;
+        $result = isset($result->result) ? $this->decode($function_name, $result->result) : $result;
+        return isset($result->result) ? $result->result : $result;
     }
 
 
