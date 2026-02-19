@@ -51,7 +51,7 @@ class Contract
             $extraParams['to'] = $this->address;
         $extraParams['data'] = $this->encode($function_name, $callData);
         $result = $this->sweb3->call('eth_call', [$extraParams], $blockNumber);
-        isset($result->result) ? $this->decode($function_name, $result->result) : $result;
+        return isset($result->result) ? $this->decode($function_name, $result->result) : $result;
     }
 
     public function send(string $function_name, $sendData, $extraParams = null)
