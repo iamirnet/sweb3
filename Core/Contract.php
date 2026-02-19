@@ -65,7 +65,7 @@ class Contract
         if (empty($extraParams['gasLimit']) && empty($extraParams['gas']))
             $extraParams['gasLimit'] = $this->estimateGas($extraParams);
         $result = $this->sweb3->send($extraParams);
-        isset($result->result) ? $this->decode($function_name, $result->result) : $result;
+        return isset($result->result) ? $this->decode($function_name, $result->result) : $result;
     }
 
 
